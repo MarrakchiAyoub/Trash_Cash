@@ -2,10 +2,46 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/Styles.css">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
+        <title>Trash Cash</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
     </head>
     <body>
+            <input type="hidden" id="id" value="" />
+        login: <input type="text" id="login" value="" /><br>
+        password: <input type="password" id="psw" value="" />
+        <input type="submit" id="send" value="connect">
+        <p id="message"></p>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#send").click(function(){
+            var login=document.getElementById("login").value;
+            var psw=document.getElementById("psw").value;
+            var send=$("#send").val;
+            var dataString="login=" + login + "&psw=" + psw + "&send=";
+            $("#message").append(login+" "+psw);
+            if($.trim(login).length>0 & $.trim(psw).length>0){
+                $.ajax({
+                    type: "POST",
+                    url:"http://localhost/Trash_Cash/login.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function(){ $("#send").val('Connecting...');},
+                    success : function(data){
+                        if (data == "success") {
+                            alert("inserted");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+            } return false;
+          });
+        });
+        </script>
         <script type="text/javascript" src="cordova.js"></script>
     </body>
 </html>
