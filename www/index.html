@@ -8,10 +8,13 @@
         <script type="text/javascript" src="js/jquery.js"></script>
     </head>
     <body>
+        <form>
             <input type="hidden" id="id" value="" />
         login: <input type="text" id="login" value="" /><br>
         password: <input type="password" id="psw" value="" />
-        <input type="submit" id="send" value="connect">
+        <input type="submit" id="send" value="conection">
+        </form>
+        <input type="button" id="create" value="Crée un nouveux compte"
         <p id="message"></p>
         <script type="text/javascript">
         $(document).ready(function(){
@@ -31,7 +34,7 @@
                     beforeSend: function(){ $("#send").val('Connecting...');},
                     success : function(data){
                         if (data == "success") {
-                            alert("inserted");
+                            alert("connected");
                             $("#insert").val('submit');
                         } else if (data == "error") {
                             alert("error");
